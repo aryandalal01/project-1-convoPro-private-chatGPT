@@ -1,0 +1,19 @@
+from llama_index.core.llms import ChatMessaage,MessageRole
+
+from llm_factory.get_llm import get_ollama_llm
+
+def get_answer(model_name,chat_history):
+    ll, = get_ollama_llm(model_name)
+
+    messages = [
+        ChatMessage(role=MessageRole.SYSTEM,content = "You are a helpful assistant.")
+
+    ]
+
+    message.extend(
+        ChatMessage(role = MessageRole[msg["role"].upper()],content=msg["content"])
+        for msg in chat_history
+    )
+
+    response = llm.chat(messages=messages)
+    return response.message.content
